@@ -30,19 +30,19 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		6ED127502E5E319500933963 /* DogBreedApp */ = {
+		6ED127502E5E319500933963 /* Sources */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = DogBreedApp;
+			path = Sources;
 			sourceTree = "<group>";
 		};
-		6ED127632E5E319700933963 /* DogBreedAppTests */ = {
+		6ED127632E5E319700933963 /* Tests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = DogBreedAppTests;
+			path = Tests;
 			sourceTree = "<group>";
 		};
-		6ED1276D2E5E319700933963 /* DogBreedAppUITests */ = {
+		6ED1276D2E5E319700933963 /* UITests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = DogBreedAppUITests;
+			path = UITests;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -75,9 +75,9 @@
 		6ED127452E5E319500933963 = {
 			isa = PBXGroup;
 			children = (
-				6ED127502E5E319500933963 /* DogBreedApp */,
-				6ED127632E5E319700933963 /* DogBreedAppTests */,
-				6ED1276D2E5E319700933963 /* DogBreedAppUITests */,
+				6ED127502E5E319500933963 /* Sources */,
+				6ED127632E5E319700933963 /* Tests */,
+				6ED1276D2E5E319700933963 /* UITests */,
 				6ED1274F2E5E319500933963 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -108,7 +108,7 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				6ED127502E5E319500933963 /* DogBreedApp */,
+				6ED127502E5E319500933963 /* Sources */,
 			);
 			name = DogBreedApp;
 			packageProductDependencies = (
@@ -131,7 +131,7 @@
 				6ED127622E5E319700933963 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
-				6ED127632E5E319700933963 /* DogBreedAppTests */,
+				6ED127632E5E319700933963 /* Tests */,
 			);
 			name = DogBreedAppTests;
 			packageProductDependencies = (
@@ -154,7 +154,7 @@
 				6ED1276C2E5E319700933963 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
-				6ED1276D2E5E319700933963 /* DogBreedAppUITests */,
+				6ED1276D2E5E319700933963 /* UITests */,
 			);
 			name = DogBreedAppUITests;
 			packageProductDependencies = (
@@ -395,7 +395,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"DogBreedApp/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = HF4NVVGD52;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -424,7 +424,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"DogBreedApp/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = HF4NVVGD52;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
