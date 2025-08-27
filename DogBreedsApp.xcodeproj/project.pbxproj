@@ -192,7 +192,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 6ED127492E5E319500933963 /* Build configuration list for PBXProject "DogBreedApp" */;
+			buildConfigurationList = 6ED127492E5E319500933963 /* Build configuration list for PBXProject "DogBreedsApp" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -530,7 +530,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		6ED127492E5E319500933963 /* Build configuration list for PBXProject "DogBreedApp" */ = {
+		6ED127492E5E319500933963 /* Build configuration list for PBXProject "DogBreedsApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				6ED127722E5E319700933963 /* Debug */,
