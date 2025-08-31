@@ -12,9 +12,34 @@ import ComposableArchitecture
 struct BreedsListView: View {
     let store: StoreOf<BreedsList>
 
+    let columns = [
+        GridItem(.adaptive(minimum: 100, maximum: 150)),
+
+    ]
+
     var body: some View {
         NavigationStack {
-            Text("Breeds List")
+            ScrollView {
+                LazyVGrid(columns: columns) {
+                    ForEach(store.breeds) { breed in
+                        Color.clear.overlay(
+                            AsyncImage(url: breed.imageResolvedURL) { phase in
+                                switch phase {
+                                case .success(let image):
+                                    image
+                                        .resizable()
+                                        .scaledToFill()
+                                default:
+                                    Image(systemName: "photo")
+                                }
+                            }
+                        )
+                        .frame(maxWidth: .infinity)
+                        .aspectRatio(1, contentMode: .fit)
+                        .clipped()
+                    }
+                }
+            }
         }
         .onAppear {
             store.send(.fetchBreeds)
