@@ -53,7 +53,10 @@ extension BreedsClient: DependencyKey {
             decoder.keyDecodingStrategy = .convertFromSnakeCase
 
             do {
-                return try decoder.decode([Breed].self, from: data)
+                let breeds = try decoder.decode([Breed].self, from: data)
+
+                // TODO: Add pagination instead of returning fixed length
+                return Array(breeds.prefix(50))
             } catch {
                 throw BreedsClientError.decodingError
             }
