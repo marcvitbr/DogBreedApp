@@ -12,7 +12,21 @@ import SwiftData
 struct DogBreedsApp: App {
     var body: some Scene {
         WindowGroup {
-            
+            TabView {
+                NavigationStack {
+                    BreedsListView()
+                }
+                .tabItem {
+                    Label("Breeds", systemImage: "dog.fill")
+                }
+
+                NavigationStack {
+                    BreedsSearchView()
+                }
+                .tabItem {
+                    Label("Search", systemImage: "magnifyingglass")
+                }
+            }
         }
     }
 }
