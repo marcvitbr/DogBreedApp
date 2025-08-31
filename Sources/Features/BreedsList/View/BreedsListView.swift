@@ -20,28 +20,8 @@ struct BreedsListView: View {
         NavigationStack {
             ScrollView {
                 LazyVGrid(columns: columns) {
-                    ForEach(store.breeds) { breed in
-                        Color.clear.overlay(
-                            ZStack {
-                                CachedAsyncImage(
-                                    url: breed.imageResolvedURL
-                                )
-
-                                VStack {
-                                    Spacer()
-                                    Text(breed.name)
-                                        .font(.caption)
-                                        .foregroundColor(.primary)
-                                        .background(Color.primary
-                                            .colorInvert()
-                                            .opacity(0.75))
-                                }
-                                .padding()
-                            }
-                        )
-                        .frame(maxWidth: .infinity)
-                        .aspectRatio(1, contentMode: .fit)
-                        .clipped()
+                    ForEach(store.breeds) {
+                        BreedCellView(breed: $0)
                     }
                 }
             }
