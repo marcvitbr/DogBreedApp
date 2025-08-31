@@ -39,7 +39,11 @@ extension BreedsClient: DependencyKey {
         request.addValue(apiKey, forHTTPHeaderField: "x-api-key")
 
         do {
-            let (data, response) = try await URLSession.shared.data(for: request)
+            let configuration = URLSessionConfiguration.default
+            configuration.requestCachePolicy = .returnCacheDataElseLoad
+            let urlSession = URLSession(configuration: configuration)
+
+            let (data, response) = try await urlSession.data(for: request)
 
             guard let http = response as? HTTPURLResponse else {
                 throw BreedsClientError.transportError(underlying: "Non-HTTP response")
