@@ -20,15 +20,19 @@ struct BreedsListView: View {
         NavigationStack {
             ScrollView {
                 LazyVGrid(columns: columns) {
-                    ForEach(store.breeds) {
-                        BreedCellView(breed: $0)
+                    ForEach(store.breeds) { breed in
+                        NavigationLink {
+                            BreedDetailView(breed: breed)
+                        } label: {
+                            BreedCellView(breed: breed)
+                        }
                     }
                 }
             }
+            .navigationTitle("Breeds")
         }
         .onAppear {
             store.send(.fetchBreeds)
         }
-        .navigationTitle("Breeds")
     }
 }
