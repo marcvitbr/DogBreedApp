@@ -6,9 +6,18 @@
 //
 
 import SwiftUI
+import ComposableArchitecture
 
+@MainActor
 struct BreedsListView: View {
+    let store: StoreOf<BreedsList>
+
     var body: some View {
-        Text("Breeds List")
+        NavigationStack {
+            Text("Breeds List")
+        }
+        .onAppear {
+            store.send(.fetchBreeds)
+        }
     }
 }

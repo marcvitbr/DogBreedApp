@@ -7,6 +7,7 @@
 
 import SwiftUI
 import SwiftData
+import ComposableArchitecture
 
 @main
 struct DogBreedsApp: App {
@@ -14,7 +15,12 @@ struct DogBreedsApp: App {
         WindowGroup {
             TabView {
                 NavigationStack {
-                    BreedsListView()
+                    BreedsListView(
+                        store: .init(
+                            initialState: BreedsList.State(),
+                            reducer: { BreedsList() }
+                        )
+                    )
                 }
                 .tabItem {
                     Label("Breeds", systemImage: "dog.fill")
