@@ -8,7 +8,7 @@
 import SwiftUI
 
 @MainActor
-struct BreedCellView: View {
+struct BreedGridCellView: View {
     let breed: Breed
 
     var body: some View {
