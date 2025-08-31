@@ -9,7 +9,6 @@ import SwiftData
 
 @Model
 final class Breed: Identifiable, Equatable, Decodable {
-
     @Attribute(.unique)
     var id: Int
     var name: String
@@ -32,7 +31,6 @@ final class Breed: Identifiable, Equatable, Decodable {
     }
 
     convenience init(from decoder: Decoder) throws {
-
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
         let idString = try container.decode(Int.self, forKey: .id)
@@ -42,27 +40,27 @@ final class Breed: Identifiable, Equatable, Decodable {
         let temperament = try container.decodeIfPresent(String.self, forKey: .temperament)
 
         self.init(
-          id: idString,
-          name: name,
-          breedGroup: breedGroup,
-          temperament: temperament,
-          origin: origin
+            id: idString,
+            name: name,
+            breedGroup: breedGroup,
+            temperament: temperament,
+            origin: origin
         )
-      }
+    }
 
     static func == (lhs: Breed, rhs: Breed) -> Bool {
-      lhs.id == rhs.id &&
-      lhs.name == rhs.name &&
-      lhs.breedGroup == rhs.breedGroup &&
-      lhs.origin == rhs.origin &&
-      lhs.temperament == rhs.temperament
+        lhs.id == rhs.id &&
+        lhs.name == rhs.name &&
+        lhs.breedGroup == rhs.breedGroup &&
+        lhs.origin == rhs.origin &&
+        lhs.temperament == rhs.temperament
     }
 
     enum CodingKeys: String, CodingKey {
-      case id
-      case name
-      case breedGroup = "breed_group"
-      case origin
-      case temperament
+        case id
+        case name
+        case breedGroup = "breed_group"
+        case origin
+        case temperament
     }
 }
