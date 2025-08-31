@@ -23,16 +23,9 @@ struct BreedsListView: View {
                     ForEach(store.breeds) { breed in
                         Color.clear.overlay(
                             ZStack {
-                                AsyncImage(url: breed.imageResolvedURL) { phase in
-                                    switch phase {
-                                    case .success(let image):
-                                        image
-                                            .resizable()
-                                            .scaledToFill()
-                                    default:
-                                        Image(systemName: "photo")
-                                    }
-                                }
+                                CachedAsyncImage(
+                                    url: breed.imageResolvedURL
+                                )
 
                                 VStack {
                                     Spacer()
