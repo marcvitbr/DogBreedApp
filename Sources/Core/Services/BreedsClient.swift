@@ -11,6 +11,7 @@ import Foundation
 @DependencyClient
 struct BreedsClient {
     var fetch: () async throws -> [Breed]
+    var search: (String) async throws -> [Breed]
 }
 
 enum BreedsClientError: Error {
@@ -23,13 +24,30 @@ enum BreedsClientError: Error {
 }
 
 extension BreedsClient: DependencyKey {
-    static let liveValue = Self {
+    static let liveValue = BreedsClient(
+        fetch: fetch,
+        search: search
+    )
+
+    static let fetch: () async throws -> [Breed] = {
         guard let url = URL(string: "https://api.thedogapi.com/v1/breeds") else {
             throw BreedsClientError.invalidURL
         }
 
+        return try await getBreeds(url)
+    }
+
+    static let search: (String) async throws -> [Breed] = { searchTerm in
+        guard let url = URL(string: "https://api.thedogapi.com/v1/breeds/search?q=\(searchTerm)") else {
+            throw BreedsClientError.invalidURL
+        }
+
+        return try await getBreeds(url)
+    }
+
+    private static let getBreeds: (_ url: URL) async throws -> [Breed] = { url in
         let apiKey = ProcessInfo.processInfo.environment["DOG_API_KEY"]
-            ?? (Bundle.main.object(forInfoDictionaryKey: "DOG_API_KEY") as? String)
+        ?? (Bundle.main.object(forInfoDictionaryKey: "DOG_API_KEY") as? String)
 
         guard let apiKey, apiKey.isEmpty == false else {
             throw BreedsClientError.missingAPIKey
@@ -73,8 +91,9 @@ extension BreedsClient: DependencyKey {
 }
 
 extension BreedsClient: TestDependencyKey {
-    static let testValue = Self(
-        fetch: unimplemented("BreedsClient.fetch")
+    static let testValue = BreedsClient(
+        fetch: unimplemented("BreedsClient.fetch"),
+        search: unimplemented("BreedsClient.fetch")
     )
 }
 
