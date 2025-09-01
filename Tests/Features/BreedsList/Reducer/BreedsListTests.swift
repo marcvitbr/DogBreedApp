@@ -17,13 +17,6 @@ import Testing
 import ComposableArchitecture
 @testable import DogBreedApp
 
-private actor CallCounter {
-    private(set) var count = 0
-    func increment() {
-        count += 1
-    }
-}
-
 @MainActor
 final class BreedsListTests {
     @Test
@@ -49,14 +42,4 @@ final class BreedsListTests {
         let callCount = await callCounter.count
         #expect(callCount == 1)
     }
-}
-
-extension Breed {
-    static let anyBreed = Breed(
-        id: 1,
-        name: "Test Name",
-        breedGroup: "Test Group",
-        temperament: "Test Temperament",
-        origin: "Test Origin"
-    )
 }
