@@ -23,6 +23,11 @@ enum BreedsClientError: Error {
     case unimplemented
 }
 
+private enum Endpoint: String {
+    case breeds
+    case search = "breeds/search"
+}
+
 extension BreedsClient: DependencyKey {
     static let liveValue = BreedsClient(
         fetch: fetch,
@@ -30,22 +35,31 @@ extension BreedsClient: DependencyKey {
     )
 
     static let fetch: () async throws -> [Breed] = {
-        guard let url = URL(string: "https://api.thedogapi.com/v1/breeds") else {
-            throw BreedsClientError.invalidURL
-        }
-
-        return try await getBreeds(url)
+        let noQueryItems: [URLQueryItem]? = nil
+        return try await getBreeds(
+            .breeds,
+            noQueryItems
+        )
     }
 
     static let search: (String) async throws -> [Breed] = { searchTerm in
-        guard let url = URL(string: "https://api.thedogapi.com/v1/breeds/search?q=\(searchTerm)") else {
+        return try await getBreeds(
+            .search,
+            [URLQueryItem(name: "q", value: searchTerm)]
+        )
+    }
+
+    private static let getBreeds: (Endpoint, [URLQueryItem]?) async throws -> [Breed] = { endpoint, queryItems in
+        var components = URLComponents(string: "https://api.thedogapi.com/v1/\(endpoint.rawValue)")
+        components?.queryItems = [
+            URLQueryItem(name: "limit", value: "50"),
+            URLQueryItem(name: "page", value: "0")
+        ] + (queryItems ?? [])
+
+        guard let url = components?.url else {
             throw BreedsClientError.invalidURL
         }
 
-        return try await getBreeds(url)
-    }
-
-    private static let getBreeds: (_ url: URL) async throws -> [Breed] = { url in
         let apiKey = ProcessInfo.processInfo.environment["DOG_API_KEY"]
         ?? (Bundle.main.object(forInfoDictionaryKey: "DOG_API_KEY") as? String)
 
@@ -76,9 +90,7 @@ extension BreedsClient: DependencyKey {
 
             do {
                 let breeds = try decoder.decode([Breed].self, from: data)
-
-                // TODO: Add pagination instead of returning fixed length
-                return Array(breeds.prefix(50))
+                return breeds
             } catch {
                 throw BreedsClientError.decodingError
             }
