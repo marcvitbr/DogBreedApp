@@ -1,18 +1,26 @@
 # 🐶 DogBreedsApp
 
 An iOS app built with **SwiftUI**, **SwiftData**, and **The Composable Architecture (TCA)** that explores dog breeds using [The Dog API](https://thedogapi.com/).  
-This project was developed as part of a coding challenge for Sword Health.
+This project was developed as part of a coding challenge.
 
 ---
 
 ## ✨ Features
 
-- 📋 **Browse Dog Breeds**: Paginated list/grid of breeds, ordered alphabetically.  
+- 📋 **Browse Dog Breeds**: Grid of breeds.  
 - 🔍 **Search Breeds**: Search by name with detailed results (name, group, origin).  
-- 📖 **Breed Details**: View category, origin, and temperament.  
-- 🔄 **Tab Navigation**: Tab bar to switch between list and search.  
-- 📡 **Offline Ready**: SwiftData integration for caching results locally.  
-- 🛠️ **Error Handling**: Graceful handling of API/network errors.  
+- 📖 **Breed Details**: View name, image, group, origin, and temperament.  
+- 🔄 **Tab Navigation**: Tab bar to switch between list and search.
+- 🛠️ **Error Handling**: Graceful handling of API/network errors.
+
+---
+
+## 🗒️ TODO
+
+- **Browse Dog Breeds**: Pagination, switch between list/grid.
+- **Search Breeds**: Pagination.
+- **Offline Ready**: SwiftData integration for caching results locally.
+- **UI Tests**
 
 ---
 
@@ -60,8 +68,8 @@ DogBreedsApp/
 
 ## 🧪 Tests
 
-- **Unit Tests**: Reducers and API clients under `Tests/`.  
-- **UI Tests**: Navigation and screen interactions under `UITests/`.  
+- **Unit Tests**: Reducers and API clients under `Tests/`.
+
 - Run all tests with:
   ```sh
   xcodebuild test -scheme DogBreedsApp -destination 'platform=iOS Simulator,name=iPhone 16'
