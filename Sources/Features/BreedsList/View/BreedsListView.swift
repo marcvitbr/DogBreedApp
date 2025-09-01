@@ -24,7 +24,7 @@ struct BreedsListView: View {
                         NavigationLink {
                             BreedDetailView(breed: breed)
                         } label: {
-                            BreedCellView(breed: breed)
+                            BreedGridCellView(breed: breed)
                         }
                     }
                 }
