@@ -27,7 +27,12 @@ struct DogBreedsApp: App {
                 }
 
                 NavigationStack {
-                    BreedsSearchView()
+                    BreedsSearchView(
+                        store: .init(
+                            initialState: BreedsSearch.State(),
+                            reducer: { BreedsSearch() }
+                        )
+                    )
                 }
                 .tabItem {
                     Label("Search", systemImage: "magnifyingglass")

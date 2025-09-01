@@ -6,9 +6,30 @@
 //
 
 import SwiftUI
+import ComposableArchitecture
 
+@MainActor
 struct BreedsSearchView: View {
+    let store: StoreOf<BreedsSearch>
+
+    @State var searchText: String = ""
+
     var body: some View {
-        Text("Breed Search")
+        NavigationStack {
+            List(store.breeds) { breed in
+                NavigationLink {
+                    BreedDetailView(breed: breed)
+                } label: {
+                    BreedSearchCellView(breed: breed)
+                }
+            }
+            .navigationTitle("Search Breeds")
+            .searchable(text: $searchText)
+            .onSubmit(of: .search) {
+                store.send(
+                    .searchBreeds(searchText)
+                )
+            }
+        }
     }
 }
